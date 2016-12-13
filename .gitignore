@@ -1,0 +1,26 @@
+.DS_Store
+
+# Bundler
+/.bundle
+
+# Configuration
+/config/application.yml
+/config/application.yml.backup
+/config/passiondig_rsa
+/config/passiondig_rsa.pub
+
+# Temporary files and logs
+/log/*
+!/log/.keep
+/tmp
+
+# Static files
+/public/uploads
+/public/assets
+
+# Ansible
+*.retry
+*.pyc
+
+# Vagrant
+.vagrant
