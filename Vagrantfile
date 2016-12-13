@@ -62,13 +62,13 @@ Vagrant.configure('2') do |config|
     #   admin.#{ENV['VAGRANT_HOSTNAME']}
     # )
 
+    # Ansible will run [provisioning_path] playbook on the guest system
     machine.vm.provision :ansible_local do |ansible|
       ansible.verbose = true
       ansible.install = true
       ansible.version = '2.2'
-      # This path is on the guest system
       ansible.provisioning_path = "/#{ENV['VAGRANT_APP_NAME']}/ansible"
-      ansible.limit = 'development'
+      ansible.limit = "all"
       ansible.playbook = 'provision.yml'
       ansible.inventory_path = 'inventory/development'
     end

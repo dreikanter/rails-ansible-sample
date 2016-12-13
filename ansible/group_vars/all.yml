@@ -25,6 +25,11 @@ ruby_install_version: 0.6.0
 chruby_version: 0.3.9
 ruby_version: 2.3.3
 
+#
+# elasticsearch
+#
+elasticsearch_version: 2.3
+
 # NOTE: Use this if agent forwarding not working
 # deployment_keys:
 #   - "~/.ssh/passiondig_staging_deploy"

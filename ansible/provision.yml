@@ -4,6 +4,37 @@
   roles:
     - common
     - deploy-user
+
+- hosts: db
+  become: yes
+  roles:
+    - postgres
+
+- hosts: redis
+  become: yes
+  roles:
+    - redis
+
+- hosts: elasticsearch
+  become: yes
+  roles:
+    - elasticsearch
+
+- hosts:
+    - app
+    - worker
+  become: yes
+  roles:
     - ruby
-    # - rails
     # - monit
+
+- hosts: app
+  become: yes
+  roles:
+    - puma
+    - nginx
+
+- hosts: worker
+  become: yes
+  roles:
+    - sidekiq
