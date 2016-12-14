@@ -1,4 +1,4 @@
-ENV['VAGRANT_APP_NAME']  ||= 'myapplication'
+ENV['VAGRANT_APP_NAME']  ||= 'myapp'
 ENV['VAGRANT_HOSTNAME']  ||= "#{ENV['VAGRANT_APP_NAME']}.dev"
 ENV['VAGRANT_IP']        ||= '192.168.99.99'
 ENV['VAGRANT_MEMORY_MB'] ||= '2024'

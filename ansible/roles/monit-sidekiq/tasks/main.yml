@@ -1,0 +1,12 @@
+---
+- name: copy monit config
+  file:
+    src: "{{ app_path }}/config/monit/sidekiq.conf"
+    path: "/etc/monit/conf.d/sidekiq.conf"
+    state: link
+    force: yes
+
+- name: start sidekiq
+  monit:
+    name: sidekiq
+    state: started

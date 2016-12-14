@@ -2,10 +2,11 @@
 #
 # commons
 #
+app_name: myapp
 timezone: UTC
 locale: en_US.UTF-8
 
-swap_enabled: true
+swap_enabled: yes
 swap_file_path: /swapfile
 swap_file_size_kb: 1024
 
@@ -14,9 +15,8 @@ swap_file_size_kb: 1024
 #
 deploy_user: deploy
 deploy_group: "{{ deploy_user }}"
-deploy_dir: "/home/{{ deploy_user }}"
-authorized_public_keys:
-  - ~/.ssh/passiondig_staging.pub
+deploy_user_path: "/home/{{ deploy_user }}"
+authorized_public_keys: []
 
 #
 # ruby
@@ -24,31 +24,13 @@ authorized_public_keys:
 ruby_install_version: 0.6.0
 chruby_version: 0.3.9
 ruby_version: 2.3.3
+rubies_path: "{{ deploy_user_path }}/.rubies"
+ruby_path: "{{ rubies_path }}/{{ ruby_version }}"
+
+# NOTE: should be defined in ../../ansible_secrets.yml
+prebuilt_ruby_url: ""
 
 #
 # elasticsearch
 #
 elasticsearch_version: 2.3
-
-# NOTE: Use this if agent forwarding not working
-# deployment_keys:
-#   - "~/.ssh/passiondig_staging_deploy"
-#   - "~/.ssh/passiondig_staging_deploy.pub"
-
-# deploy_app_name: SET_APP_NAME_HERE
-# deploy_server_hostname: SET_APP_HOSTNAME_HERE
-
-# # Nginx
-# nginx_https_enabled: true
-
-# # MySQL
-# mysql_root_db_password: SET_PASSWORD_HERE
-# mysql_app_db_password: SET_PASSWORD_HERE
-
-# # Rails
-# rails_secret_key_base: SET_RAILS_SECRET_KEY_BASE_HERE
-# puma_workers: 4
-# puma_threads: 4,16
-
-# # Elasticsearch
-# elasticsearch_version: 2.3.1

@@ -25,16 +25,15 @@
     - worker
   become: yes
   roles:
+    - monit
+
+- hosts:
+    - app
+    - worker
+  roles:
     - ruby
-    # - monit
 
 - hosts: app
   become: yes
   roles:
-    - puma
     - nginx
-
-- hosts: worker
-  become: yes
-  roles:
-    - sidekiq

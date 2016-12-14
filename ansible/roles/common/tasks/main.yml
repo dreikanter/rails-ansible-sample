@@ -3,10 +3,6 @@
   apt:
     name: aptitude
     state: present
-
-- name: perform safe upgrade
-  apt:
-    upgrade: safe
     update_cache: yes
 
 - include: swap.yml
@@ -15,3 +11,4 @@
 - include: tools.yml
 
 - include: locale.yml
+

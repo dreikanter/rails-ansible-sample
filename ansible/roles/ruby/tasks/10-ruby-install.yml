@@ -20,11 +20,3 @@
   make:
     chdir: "/tmp/ruby-install-{{ ruby_install_version }}"
     target: install
-
-- name: create rubies directory
-  file:
-    path: /opt/rubies/
-    state: directory
-    mode: 0755
-    owner: root
-    group: root

@@ -15,4 +15,3 @@ localhost ansible_connection=local
 
 [all:vars]
 deploy_user = vagrant
-authorized_public_keys = []

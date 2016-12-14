@@ -2,4 +2,5 @@
 
 - Ubuntu 16.04
 - Provisioning with Ansible
-- Creates local host (like `myapplication.dev`)
+- Creates local host (like `myapp.dev`)
+
