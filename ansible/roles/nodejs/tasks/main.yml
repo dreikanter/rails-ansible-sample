@@ -1,6 +1,12 @@
 ---
+- name: download script to add installation source
+  get_url:
+    url: "{{ nodesource_url }}"
+    dest: /tmp/nodesource_setup
+    mode: 0666
+
 - name: add installation source
-  shell: curl -sL {{ nodesource_url }} | sudo -E bash -
+  shell: cat /tmp/nodesource_setup | bash -E -
 
 - name: install nodejs
   apt:
