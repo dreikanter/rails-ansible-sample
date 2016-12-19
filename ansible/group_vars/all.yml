@@ -30,11 +30,6 @@ ruby_path: "{{ rubies_path }}/{{ ruby_version }}"
 prebuilt_ruby_url: ""
 
 #
-# role: elasticsearch
-#
-elasticsearch_version: 2.3
-
-#
 # role: nodejs
 #
 nodesource_url: https://deb.nodesource.com/setup_6.x
