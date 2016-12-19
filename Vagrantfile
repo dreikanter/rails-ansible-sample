@@ -52,9 +52,9 @@ Vagrant.configure('2') do |config|
     config.vm.box = 'bento/ubuntu-16.04'
     machine.vm.hostname = ENV['VAGRANT_HOSTNAME']
 
-    machine.vm.network 'forwarded_port', guest: 3000, host: 3000, auto_correct: true
-    machine.vm.network 'forwarded_port', guest: 1080, host: 1080, auto_correct: true
-    machine.vm.network 'forwarded_port', guest: 2812, host: 2812, auto_correct: true
+    machine.vm.network 'forwarded_port', guest: 3000, host: 3000
+    machine.vm.network 'forwarded_port', guest: 1080, host: 1080
+    machine.vm.network 'forwarded_port', guest: 2812, host: 2812
     machine.vm.network 'private_network', ip: ENV['VAGRANT_IP']
 
     # Auxiliary domain names to create

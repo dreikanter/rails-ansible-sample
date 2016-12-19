@@ -3,3 +3,5 @@
   apt:
     name: monit
     state: latest
+
+# TODO: Remove "include /etc/monit/conf.d/*" from "/etc/monit/monitrc" to prevent warnings

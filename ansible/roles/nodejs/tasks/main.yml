@@ -1,0 +1,8 @@
+---
+- name: add installation source
+  shell: curl -sL {{ nodesource_url }} | sudo -E bash -
+
+- name: install nodejs
+  apt:
+    name: nodejs
+    state: present

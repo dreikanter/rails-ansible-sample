@@ -1,6 +1,6 @@
 ---
 #
-# commons
+# role: commons
 #
 app_name: myapp
 timezone: UTC
@@ -11,7 +11,7 @@ swap_file_path: /swapfile
 swap_file_size_kb: 1024
 
 #
-#  deploy-user
+# role:  deploy-user
 #
 deploy_user: deploy
 deploy_group: "{{ deploy_user }}"
@@ -19,18 +19,22 @@ deploy_user_path: "/home/{{ deploy_user }}"
 authorized_public_keys: []
 
 #
-# ruby
+# role: ruby
 #
 ruby_install_version: 0.6.0
-chruby_version: 0.3.9
 ruby_version: 2.3.3
 rubies_path: "{{ deploy_user_path }}/.rubies"
 ruby_path: "{{ rubies_path }}/{{ ruby_version }}"
 
-# NOTE: should be defined in ../../ansible_secrets.yml
+# NOTE: should be defined in ../../ansible-secrets.yml
 prebuilt_ruby_url: ""
 
 #
-# elasticsearch
+# role: elasticsearch
 #
 elasticsearch_version: 2.3
+
+#
+# role: nodejs
+#
+nodesource_url: https://deb.nodesource.com/setup_6.x
