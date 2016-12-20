@@ -4,8 +4,11 @@ ENV['VAGRANT_IP']             ||= '192.168.99.99'
 ENV['VAGRANT_MEMORY_MB']      ||= '2024'
 ENV['VAGRANT_CPUS']           ||= '1'
 ENV['ANSIBLE_PLAYBOOKS_PATH'] ||= '../rails-ansible'
-ENV['APP_MOUNT_PATH']         ||= "/#{ENV[VAGRANT_APP_NAME]}"
-ENV['ANSIBLE_MOUNT_PATH']     ||= "/#{ENV[VAGRANT_APP_NAME]}-ansible"
+ENV['APP_SECRETS_PATH']       ||= '~/.rails-ansible'
+ENV['APP_MOUNT_PATH']         ||= "/#{ENV['VAGRANT_APP_NAME']}"
+ENV['ANSIBLE_MOUNT_PATH']     ||= "/#{ENV['VAGRANT_APP_NAME']}-ansible"
+ENV['APP_SECRETS_MOUNT_PATH'] ||= "/#{ENV['VAGRANT_APP_NAME']}-secrets"
+
 
 Vagrant.require_version '>= 1.5'
 
@@ -48,13 +51,17 @@ Vagrant.configure('2') do |config|
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
 
-  # Mounting application directory
+  # Mount application directory
   config.vm.synced_folder '.', "/var/#{ENV['VAGRANT_APP_NAME']}"
   config.bindfs.bind_folder "/var/#{ENV['VAGRANT_APP_NAME']}", ENV['APP_MOUNT_PATH']
 
-  # Mounting Ansible playbooks directory
+  # Mount Ansible playbooks directory
   config.vm.synced_folder ENV['ANSIBLE_PLAYBOOKS_PATH'], "/var/#{ENV['VAGRANT_APP_NAME']}-ansible"
   config.bindfs.bind_folder "/var/#{ENV['VAGRANT_APP_NAME']}-ansible", ENV['ANSIBLE_MOUNT_PATH']
+
+  # Mount application secrets directory
+  config.vm.synced_folder ENV['APP_SECRETS_PATH'], "/var/#{ENV['VAGRANT_APP_NAME']}-secrets"
+  config.bindfs.bind_folder "/var/#{ENV['VAGRANT_APP_NAME']}-secrets", ENV['APP_SECRETS_MOUNT_PATH']
 
   config.vm.define ENV['VAGRANT_APP_NAME'] do |machine|
     config.vm.box = 'bento/ubuntu-16.04'
