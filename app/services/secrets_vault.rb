@@ -111,7 +111,8 @@ class SecretsVault
 
   def check_file_exists(description, path)
     return if File.exists?(path)
-    abort "#{description} not found at #{path}"
+    puts "#{description} not found at #{path}"
+    exit
   end
 
   def encrypted_config_parts
