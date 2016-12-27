@@ -4,7 +4,7 @@ ENV['VAGRANT_IP']             ||= '192.168.99.99'
 ENV['VAGRANT_MEMORY_MB']      ||= '2024'
 ENV['VAGRANT_CPUS']           ||= '1'
 ENV['ANSIBLE_PLAYBOOKS_PATH'] ||= '../rails-ansible'
-ENV['APP_SECRETS_PATH']       ||= '~/.rails-ansible'
+ENV['LOCAL_SECRETS_PATH']       ||= '~/.rails-ansible'
 ENV['APP_MOUNT_PATH']         ||= "/#{ENV['VAGRANT_APP_NAME']}"
 ENV['ANSIBLE_MOUNT_PATH']     ||= "/#{ENV['VAGRANT_APP_NAME']}-ansible"
 ENV['APP_SECRETS_MOUNT_PATH'] ||= "/#{ENV['VAGRANT_APP_NAME']}-secrets"
@@ -60,16 +60,16 @@ Vagrant.configure('2') do |config|
   config.bindfs.bind_folder "/var/#{ENV['VAGRANT_APP_NAME']}-ansible", ENV['ANSIBLE_MOUNT_PATH']
 
   # Mount application secrets directory
-  config.vm.synced_folder ENV['APP_SECRETS_PATH'], "/var/#{ENV['VAGRANT_APP_NAME']}-secrets"
+  config.vm.synced_folder ENV['LOCAL_SECRETS_PATH'], "/var/#{ENV['VAGRANT_APP_NAME']}-secrets"
   config.bindfs.bind_folder "/var/#{ENV['VAGRANT_APP_NAME']}-secrets", ENV['APP_SECRETS_MOUNT_PATH']
 
   config.vm.define ENV['VAGRANT_APP_NAME'] do |machine|
     config.vm.box = 'bento/ubuntu-16.04'
     machine.vm.hostname = ENV['VAGRANT_HOSTNAME']
 
-    machine.vm.network 'forwarded_port', guest: 3000, host: 3000
-    machine.vm.network 'forwarded_port', guest: 1080, host: 1080
-    machine.vm.network 'forwarded_port', guest: 2812, host: 2812
+    machine.vm.network 'forwarded_port', guest: 3000, host: 3000, auto_correct: true
+    machine.vm.network 'forwarded_port', guest: 1080, host: 1080, auto_correct: true
+    machine.vm.network 'forwarded_port', guest: 2812, host: 2812, auto_correct: true
     machine.vm.network 'private_network', ip: ENV['VAGRANT_IP']
 
     # Auxiliary domain names to create
