@@ -17,8 +17,7 @@ rails_env = (ENV['RAILS_ENV'] || 'development').downcase
 environment rails_env
 
 if rails_env == 'production'
-  app_dir = File.expand_path('../..', __FILE__)
-  shared_dir = "#{app_dir}/shared"
+  app_dir = File.expand_path('../../../shared', __FILE__)
 
   # Specifies the number of `workers` to boot in clustered mode.
   # Workers are forked webserver processes. If using threads and workers together
