@@ -4,8 +4,8 @@ require 'logger'
 require 'digest/md5'
 
 class SecretsVault
-  PUBLIC_KEY = ENV['SECRETS_VAULT_PUBLIC_KEY'] || 'passiondig_rsa.pub'
-  PRIVATE_KEY = ENV['SECRETS_VAULT_PRIVATE_KEY'] || 'passiondig_rsa'
+  PUBLIC_KEY = ENV['SECRETS_VAULT_PUBLIC_KEY'] || 'config_rsa.pub'
+  PRIVATE_KEY = ENV['SECRETS_VAULT_PRIVATE_KEY'] || 'config_rsa'
   APPLICATION_CONFIG = 'application.yml'
   APPLICATION_CONFIG_ENCRYPTED = "#{APPLICATION_CONFIG}.enc"
 
