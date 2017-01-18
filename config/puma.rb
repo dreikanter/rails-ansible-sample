@@ -17,8 +17,6 @@ rails_env = (ENV['RAILS_ENV'] || 'development').downcase
 environment rails_env
 
 if rails_env == 'production'
-  app_dir = File.expand_path('../../../shared', __FILE__)
-
   # Specifies the number of `workers` to boot in clustered mode.
   # Workers are forked webserver processes. If using threads and workers together
   # the concurrency of the application would be max `threads` * `workers`.
@@ -50,9 +48,10 @@ if rails_env == 'production'
   # Allow puma to be restarted by `rails restart` command.
   plugin :tmp_restart
 
-  bind "unix://#{shared_dir}/sockets/puma.sock"
-  pidfile "#{shared_dir}/pids/puma.pid"
-  state_path "#{shared_dir}/pids/puma.state"
-  stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+  # NOTE: These variables are defined in puma.service.j2
+  bind "unix://#{ENV['PUMA_SOCKET_PATH']}"
+  pidfile "#{ENV['PUMA_PID_PATH']}"
+  state_path "#{ENV['PUMA_STATE_PATH']}"
+  stdout_redirect "#{ENV['PUMA_LOG_PATH']}", "#{ENV['PUMA_ERROR_LOG_PATH']}", true
   activate_control_app
 end
