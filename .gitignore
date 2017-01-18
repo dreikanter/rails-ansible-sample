@@ -18,3 +18,5 @@
 
 # Vagrant
 .vagrant
+
+node_modules
